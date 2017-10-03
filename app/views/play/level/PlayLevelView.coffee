@@ -751,6 +751,9 @@ module.exports = class PlayLevelView extends RootView
   # Real-time playback
   onRealTimePlaybackStarted: (e) ->
     @$el.addClass('real-time').focus()
+    @studentGoals = @world.thangMap['Hero Placeholder'].stringGoals
+    @studentGoals = @studentGoals?.map((g) -> JSON.parse(g))
+    @renderSelectors('#how-to-play-game-dev-panel')
     @$('#how-to-play-game-dev-panel').removeClass('hide') if @level.isType('game-dev')
     @onWindowResize()
     @realTimePlaybackWaitingForFrames = true

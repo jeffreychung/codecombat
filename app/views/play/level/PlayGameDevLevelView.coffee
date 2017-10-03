@@ -26,6 +26,7 @@ module.exports = class PlayGameDevLevelView extends RootView
   
   subscriptions:
     'god:new-world-created': 'onNewWorld'
+    'surface:ui-tracked-properties-changed': 'onSurfaceUITrackedPropertiesChanged'
 
   events:
     'click #edit-level-btn': 'onEditLevelButton'
@@ -160,6 +161,14 @@ module.exports = class PlayGameDevLevelView extends RootView
       modal = new GameDevVictoryModal({ shareURL: @state.get('shareURL'), @eventProperties })
       @openModalView(modal)
       modal.once 'replay', @onClickPlayButton, @
+
+  onSurfaceUITrackedPropertiesChanged: (e) ->
+    goals = e.thangStateMap['Hero Placeholder'].thang.stringGoals
+    @updateRealTimeGoals(goals)
+
+  updateRealTimeGoals: (goals) ->
+    @studentGoals = goals?.map((g) -> JSON.parse(g))
+    @renderSelectors '#info-col'
 
   destroy: ->
     @levelLoader?.destroy()
