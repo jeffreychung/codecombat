@@ -12,7 +12,7 @@ include ../game-dev-goals.jade
 
     #info-col.col-xs-3
       .panel.panel-default
-        .panel-body.text-center
+        #directions.panel-body.text-center
           if view.state.get('errorMessage')
             .alert.alert-danger= view.state.get('errorMessage')
 

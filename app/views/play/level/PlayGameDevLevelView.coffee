@@ -168,7 +168,7 @@ module.exports = class PlayGameDevLevelView extends RootView
 
   updateRealTimeGoals: (goals) ->
     @studentGoals = goals?.map((g) -> JSON.parse(g))
-    @renderSelectors '#info-col'
+    @renderSelectors '#directions'
 
   destroy: ->
     @levelLoader?.destroy()
